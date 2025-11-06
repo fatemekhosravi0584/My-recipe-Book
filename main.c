@@ -9,7 +9,7 @@
 #define STEP_LEN 500
 
 typedef struct {
-    char name[INGR_NAME_LEN];
+    char name[NAME_LEN];
     double qty;
     char unit[UNIT_LEN];
 }; Ingredient;
@@ -24,10 +24,10 @@ typedef struct {
     int base_servings;
 } recipe;
 
-Recipe recipes[MAX_RECIPES]
+recipe recipes[MAX_RECIPES];
 int recipe_count = 0;
 
-void inputIngredients(Recipe *r) {
+void inputIngredients(recipe *r) {
     r->ingr_count = 0;
     r->base_serving = 2;
 
