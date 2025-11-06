@@ -27,12 +27,35 @@ typedef struct {
 Recipe recipes[MAX_RECIPES]
 int recipe_count = 0;
 
-void addRecipes() {
-    if (recipe_count >= MAX_RECIPES){
-        printf("Recipe List is full!\n");
-        return;
-    }
-    printf("\nEnter Recipe name: ")
-    readLine(recipes[resipes_count].name, NAME_LEN);
+void inputIngredients(Recipe *r) {
+    r->ingr_count = 0;
+    r->base_serving = 2;
 
+    printf("\nEnter ingredients for %d people.", r->base_servings);
+    printf("\n(press Enter on name to finish.)\n");
+
+    while (r->ingr_count < MAX_INGRS) {
+        int idx = r_>ingr_count;
+
+        printf("\nIngredient %d name: ", idx + 1);
+        readLine(r->ingrs[idx].name, INGR_LEN_NAME);
+        if (r->ingrs[idx].name[0], == '\n') {
+            break;
+        }
+
+        printf("Quantity (number): ");
+        while (scanf("%lf", &r->ingrs[idx].qty) != 1) {
+            printf("Invalide number, Try again: ");
+            int c; while ((c = getchar()) != '\n' && c != EOF) {}
+        }
+        getchar();
+
+        printf("Unit (e.g., g, ml, tbsp, pcs): ");
+        readLine(r->ingrs[idx].unit, UNIT_LEN);
+
+        r->ingr_count++;
+    }
+    if (r->ingr_count == 0) {
+        printf("No ingredients added.\n");
+    }
 }
